@@ -9,7 +9,6 @@ public class Main {
 
         while (true) {
             System.out.println("Выберите операцию: [ 1. Добавить | 2. Показать | 3. Удалить ]");
-            System.out.print(">> ");
             String input = scanner.nextLine();
             int operation = Integer.parseInt(input);
             switch (operation) {
@@ -33,12 +32,11 @@ public class Main {
                         String tempName = items.get(number - 1);
                         items.remove(number - 1);
                         System.out.println("Покупка \"" + tempName + "\" удалена, список покупок:");
-                        showList(items);
                     } catch (NumberFormatException e) {
                         items.remove(name);
                         System.out.println("Покупка \"" + name + "\" удалена, список покупок:");
-                        showList(items);
                     }
+                    showList(items);
                 }
             }
             System.out.println(); // просто пустая строка для визуального разделения
