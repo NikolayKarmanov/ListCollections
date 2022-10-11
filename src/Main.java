@@ -8,7 +8,7 @@ public class Main {
         List<String> items = new LinkedList<>();
 
         while (true) {
-            System.out.println("Выберите операцию: [ 1. Добавить | 2. Показать | 3. Удалить ]");
+            System.out.println("Выберите операцию: [ 1. Добавить | 2. Показать | 3. Удалить | 4. Поиск ]");
             String input = scanner.nextLine();
             int operation = Integer.parseInt(input);
             switch (operation) {
@@ -29,14 +29,25 @@ public class Main {
                     String name = scanner.nextLine();
                     try {
                         int number = Integer.parseInt(name);
-                        String tempName = items.get(number - 1);
+                        System.out.println("Покупка \"" + items.get(number - 1) + "\" удалена, список покупок:");
                         items.remove(number - 1);
-                        System.out.println("Покупка \"" + tempName + "\" удалена, список покупок:");
                     } catch (NumberFormatException e) {
                         items.remove(name);
                         System.out.println("Покупка \"" + name + "\" удалена, список покупок:");
                     }
                     showList(items);
+                }
+                case 4 -> {
+                    System.out.println("Введите текст для поиска:");
+                    String query = scanner.nextLine();
+                    System.out.println("Найдено:");
+                    String queryLower = query.toLowerCase();
+                    for (int i = 0; i < items.size(); i++) {
+                        String itemLower = items.get(i).toLowerCase();
+                        if (itemLower.contains(queryLower)) {
+                            System.out.println((i + 1) + " . " + items.get(i));
+                        }
+                    }
                 }
             }
             System.out.println(); // просто пустая строка для визуального разделения
